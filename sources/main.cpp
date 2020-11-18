@@ -1,27 +1,28 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "ImageRecognition/imagePre-processing.hpp"
-
-#include<iostream>
-#include<string>
-
 #include <opencv2/opencv.hpp>
 
-using namespace cv;
+#include "ImageRecognition/imagePre-processing.hpp"
+
 using namespace std;
+using namespace cv;
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    string path = "C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\cam14_WB.jpg";  // testing path, you may change or delete this line
+    Mat image = imread("C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\test_image.jpg", IMREAD_COLOR);
 
-    Mat image = upload_img(path);
-    image = convert_toGray(image);
+    image = binarisation(image);
     image = noise_removal(image);
+    image = crop(image);
+    image = inverse_binarisation(image);
 
-    imshow("Test image", image);
+    const char* source_window = "Source";
+    namedWindow( source_window, WINDOW_NORMAL );
+    resizeWindow(source_window, 1000, 800);
+    imshow( source_window, image );
+
     waitKey(0);
-
     return a.exec();
 }

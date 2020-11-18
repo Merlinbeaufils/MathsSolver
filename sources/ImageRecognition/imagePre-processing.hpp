@@ -11,12 +11,14 @@
 using namespace std;
 using namespace cv;
 
-Mat convert_toGray(Mat image);
+Mat binarisation(Mat image);
 
 Mat upload_img(string path);
 
 Mat noise_removal(Mat image);
 
 Mat crop(Mat image);
+
+Mat inverse_binarisation(Mat image);
 
 #endif // IMAGEPREPROCESSING_HPP

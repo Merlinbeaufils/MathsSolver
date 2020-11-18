@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-
-<!-- Written by QtCreator 4.13.0, 2020-11-15T15:20:12. -->
+<!-- Written by QtCreator 4.13.0, 2020-11-18T19:51:15. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -68,7 +67,6 @@
    <valuemap type="QVariantMap" key="AutoTest.CheckStates"/>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
-
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey">
     <value type="QString">-fno-delayed-template-parsing</value>
    </valuelist>
@@ -345,7 +343,6 @@
   </valuemap>
  </data>
  <data>
-
   <variable>ProjectExplorer.Project.TargetCount</variable>
   <value type="int">1</value>
  </data>
