@@ -13,15 +13,14 @@ int main(int argc, char *argv[])
 
     Mat image = imread("C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\test_image.jpg", IMREAD_COLOR);
 
-    image = binarisation(image);
-    image = noise_removal(image);
-    image = crop(image);
-    image = inverse_binarisation(image);
+      image = noise_removal(image);
+      image = binarisation(image);
+      image = crop(image);
 
-    const char* source_window = "Source";
-    namedWindow( source_window, WINDOW_NORMAL );
-    resizeWindow(source_window, 1000, 800);
-    imshow( source_window, image );
+      const char* source_window = "Source";
+      namedWindow( source_window, WINDOW_NORMAL );
+      resizeWindow(source_window, 1000, 800);
+      imshow( source_window, image );
 
     waitKey(0);
     return a.exec();

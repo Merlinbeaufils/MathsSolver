@@ -28,16 +28,20 @@ Mat binarisation(Mat image){
     }
 
     cvtColor(image, gray_image, COLOR_BGR2GRAY);
-    threshold(gray_image, final, 128.0, 255, THRESH_BINARY_INV);
+    adaptiveThreshold(gray_image, final, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 75, 50);
+    bitwise_not(final, final);
 
     return final;
 }
 
 Mat noise_removal(Mat image){
     Mat final_img;
-    Mat ero(3,3,CV_8U,Scalar(1));
 
-    morphologyEx(image,final_img,MORPH_OPEN, ero);
+   Size size(3,3);
+   GaussianBlur(image,final_img,size,0);
+
+   Mat ero(2,2,CV_8U,Scalar(1));
+   morphologyEx(final_img,final_img,MORPH_OPEN, ero);
 
     return final_img;
 }
@@ -61,25 +65,29 @@ Mat crop(Mat image){
     }
 
     RotatedRect box = minAreaRect(Mat(points));
-    Rect roi;
+    double angle = box.angle;
+    if (angle < -45.)
+      angle += 90.;
+
+    Mat rot_mat = getRotationMatrix2D(box.center, angle, 1);
+    Mat rotated;
+    warpAffine(image, rotated, rot_mat, output.size(), INTER_CUBIC);
+
+  /*  Rect roi;
     roi.x = box.center.x - (box.size.width / 2);
     roi.y = box.center.y - (box.size.height / 2);
-    roi.width = box.size.width+10;
-    roi.height = box.size.height+10;
+    roi.width = box.size.width;
+    roi.height = box.size.height;
+    Mat cropped = image(roi);
+*/
 
-    // Crop the original image to the defined ROI
-    Mat crop = image(roi);
+    Size box_size = box.size;
+    if (box.angle < -45.)
+      swap(box_size.width, box_size.height);
+    Mat cropped;
+    getRectSubPix(rotated, box_size, box.center, cropped);
 
-    return crop;
+    return cropped;
 }
 
-Mat inverse_binarisation(Mat image){
-    //clearer lines and background white again
-    Mat element = getStructuringElement(MORPH_RECT, Size(4, 4));
-    dilate(image, image, element);
-
-    threshold(image, image, 128.0, 255, THRESH_BINARY_INV);
-
-    return image;
-}
 

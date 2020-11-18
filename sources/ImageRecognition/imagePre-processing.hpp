@@ -19,6 +19,4 @@ Mat noise_removal(Mat image);
 
 Mat crop(Mat image);
 
-Mat inverse_binarisation(Mat image);
-
 #endif // IMAGEPREPROCESSING_HPP
