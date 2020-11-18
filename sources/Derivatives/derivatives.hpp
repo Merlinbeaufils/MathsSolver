@@ -34,8 +34,8 @@ public:
     AbstractFunction chain_rule(AbstractFunction function1, AbstractFunction function2);
 private:
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 
 };
 
