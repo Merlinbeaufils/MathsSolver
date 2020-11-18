@@ -1,34 +1,88 @@
 #include "derivatives.hpp"
 
-AbstractFunction::AbstractFunction(string our_function){
-
+AbstractFunction::AbstractFunction(string fun){
+    operation = none;
+    while (fun[0] == "("[0] and fun[-1] == ")"[0]){
+        string new_f = "";
+        for (string::iterator i = fun.begin() + 1;i<fun.end();i++){
+            new_f += *i;
+        }
+        fun = new_f;
+    }
+    int counter = 0;
+    string::iterator j = fun.begin();
+    for (string::iterator i = fun.begin();i<fun.end();i++){
+        if (*i == "("[0]){
+            counter += 1;
+        }
+        if (*i == ")"[0]){
+            counter += 1;
+        }
+        if (operators.find_first_of(*i,0) != string::npos and counter == 0){
+            char op = *i;
+            Operation new_o = none;
+            op_to_enum(op, new_o);
+            if (new_o > operation){
+                operation = new_o;
+                j = i;
+            };
+        }
+    }
+    string l = ""; string r = "";
+    for (string::iterator i = fun.begin();i<fun.end();i++){
+        if (i<j){
+            l += *i;
+        }
+        if (i>j){
+            r += *i;
+        }
+    *left = AbstractFunction(l);*right = AbstractFunction(r);
+    }
+}
+void AbstractFunction::op_to_enum(char op,Operation &o){
+    if (op == "+"[0]){
+        o = addition;
+    }
+    if (op == "-"[0]){
+        o = subtraction;
+    }
+    if (op == "*"[0]){
+        o = multiplication;
+    }
+    if (op == "/"[0]){
+        o = division;
+    }
+    if (op == "~"[0]){
+        o = composition;
+    }
 }
 
-AbstractFunction::AbstractFunction(AbstractFunction left, AbstractFunction right, Operation operation){
+
+AbstractFunction::AbstractFunction(AbstractFunction *left, AbstractFunction *right, Operation operation){
     this-> left = left;
     this-> right = right;
     this-> operation = operation;
 }
 
 AbstractFunction::AbstractFunction(){
-    this->left = NULL;
-    this->right = NULL;
+    this->left = nullptr;
+    this->right = nullptr;
     this->operation = none;
 }
 
 AbstractFunction AbstractFunction:: get_left(){
-    return left;
+    return *left;
 }
 
-void AbstractFunction::set_left(AbstractFunction left){
-    this->left = left
+void AbstractFunction::set_left(AbstractFunction *left){
+    this->left = left;
 }
 
 AbstractFunction AbstractFunction:: get_right(){
-    return right;
+    return *right;
 }
 
-void AbstractFunction::set_right(AbstractFunction right){
+void AbstractFunction::set_right(AbstractFunction *right){
     this->right = right;
 }
 
@@ -81,10 +135,9 @@ AbstractFunction AbstractFunction::chain_rule(AbstractFunction function1, Abstra
 
 
 
-
 SinFunction::SinFunction(){
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
     operation = none;
 }
 AbstractFunction SinFunction::solve(){
@@ -97,8 +150,8 @@ AbstractFunction SinFunction::solve(){
 
 
 CosFunction::CosFunction(){
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
     operation = none;
 }
 AbstractFunction CosFunction::solve(){
@@ -111,8 +164,8 @@ AbstractFunction CosFunction::solve(){
 
 ExponentialFunction::ExponentialFunction(int base){
     this->base = base;
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
     operation = none;
 }
 int ExponentialFunction::get_base(){
@@ -127,8 +180,8 @@ AbstractFunction ExponentialFunction::solve(){
 
 ConstantFunction::ConstantFunction(int c){
     this->c = c;
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
     operation = none;
 }
 int ConstantFunction::get_c(){
@@ -145,8 +198,8 @@ AbstractFunction ConstantFunction::solve(){
 
 LogarithmicFunction::LogarithmicFunction(int base){
     this->base = base;
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
     operation = none;
 }
 int LogarithmicFunction::get_base(){
@@ -165,8 +218,8 @@ AbstractFunction LogarithmicFunction::solve(){
 
 PolynomialFunction::PolynomialFunction(int exponent){
     this->exponent = exponent;
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
     operation = none;
 }
 AbstractFunction PolynomialFunction::solve(){

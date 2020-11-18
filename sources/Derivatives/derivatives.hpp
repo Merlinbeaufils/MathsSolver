@@ -13,16 +13,18 @@ enum Operation{
     none = 0
 };
 
+string operators = "+-*/^~";
 class AbstractFunction {
 public:
     AbstractFunction(string our_function);
-    AbstractFunction(AbstractFunction left, AbstractFunction right, Operation operation);
+    AbstractFunction(AbstractFunction *left, AbstractFunction *right, Operation operation);
     ~AbstractFunction();
     AbstractFunction();
+    void op_to_enum(char op,Operation &operation);
     AbstractFunction get_left();
-    void set_left(AbstractFunction left);
+    void set_left(AbstractFunction *left);
     AbstractFunction get_right();
-    void set_right(AbstractFunction right);
+    void set_right(AbstractFunction *right);
     Operation get_operation();
     void set_operation(Operation operation);
     AbstractFunction solve();
@@ -45,8 +47,8 @@ public:
     AbstractFunction solve();
 private:
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 };
 
 class CosFunction : public AbstractFunction{
@@ -55,8 +57,8 @@ public:
     AbstractFunction solve();
 private:
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 };
 class ExponentialFunction : public AbstractFunction{
 public:
@@ -66,8 +68,8 @@ public:
 private:
     int base;
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 };
 
 class LogarithmicFunction : public AbstractFunction{
@@ -78,8 +80,8 @@ public:
 private:
     int base;
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 };
 
 class PolynomialFunction : public AbstractFunction{
@@ -90,8 +92,8 @@ public:
 private:
     int exponent;
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 };
 
 class ConstantFunction : public AbstractFunction{
@@ -102,8 +104,8 @@ public:
 private:
     int c;
     Operation operation;
-    AbstractFunction left;
-    AbstractFunction right;
+    AbstractFunction *left;
+    AbstractFunction *right;
 };
 
 
