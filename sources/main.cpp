@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <opencv2/opencv.hpp>
+#include<string>
+
 
 #include "ImageRecognition/imagePre-processing.hpp"
 
@@ -11,17 +13,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Mat image = imread("C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\test_image.jpg", IMREAD_COLOR);
+    string path= "C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\test_image2.jpg";
 
-      image = noise_removal(image);
-      image = binarisation(image);
-      image = crop(image);
+    display_prepocessing(path);
 
-      const char* source_window = "Source";
-      namedWindow( source_window, WINDOW_NORMAL );
-      resizeWindow(source_window, 1000, 800);
-      imshow( source_window, image );
-
-    waitKey(0);
     return a.exec();
 }
