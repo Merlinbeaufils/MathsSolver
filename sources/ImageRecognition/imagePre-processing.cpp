@@ -43,8 +43,8 @@ Mat noise_removal(Mat image){
    Size size(3,3);
    GaussianBlur(image,final_img,size,0);
 
-   //Mat ero(1,1,CV_8U,Scalar(1));
-   //morphologyEx(final_img,final_img,MORPH_OPEN, ero);
+   Mat ero(3,3,CV_8U,Scalar(1));
+   morphologyEx(final_img,final_img,MORPH_OPEN, ero);
 
     return final_img;
 }
@@ -182,6 +182,7 @@ void extract_contours(Mat image){
            searchMask<<i<<".jpg";
            imwrite(searchMask.str(),resizedPic);
 
+
         }
 
 }
@@ -191,7 +192,7 @@ void display_prepocessing(string path){
     //image = noise_removal(image);
     image = binarisation(image);
     image = crop(image);
-    image = noise_removal(image);
+    //image = noise_removal(image);
 
  /*   int dilation_size=0.5;
 

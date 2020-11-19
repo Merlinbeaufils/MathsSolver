@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    string path= "C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\test_image2.jpg";
+    string path= "C:\\Users\\Korisnik\\Desktop\\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\test_image8.jpg";
 
     display_prepocessing(path);
 
