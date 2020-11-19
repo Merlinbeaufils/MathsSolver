@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.resize(2000, 1400);
+    w.setWindowState(Qt::WindowMaximized);
     w.setWindowTitle("Handwritten Math Solver");
     w.setWindowIcon(QIcon("iconcse201.png"));
     w.show();
