@@ -26,11 +26,11 @@ MatrixXd CNN::zero_pad(MatrixXd image, int pad) {
 
 bool CNN::test_zero_pad() {
     MatrixXd M;
-    CNN c;
+   // CNN c;
     M << 1, 2, 3,
          4, 5, 6,
          7, 8, 9;
-    M = c.zero_pad(M, 2);
+   // M = c.zero_pad(M, 2);
     cout << M;
     return true;
 }
