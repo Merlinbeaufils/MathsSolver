@@ -1,0 +1,1 @@
+This week I continued implementing various functionalities of the main window. I plan to research on dynamic scaling and the option to save calculations in a calculation history.
