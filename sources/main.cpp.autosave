@@ -7,6 +7,8 @@
 #include<iostream>
 #include<string>
 #include<opencv2/opencv.hpp>
+//#include<tensorflow/c/c_api.h>
+
 
 
 using namespace std;
@@ -16,9 +18,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //string path= "/Users/lucienwalewski/OneDrive/Polytechnique/Work/Year 2/CSE201/Project/MathsSolver/sources/ImageRecognition/Images/reference2.jpg";
+    string path= "C:\\Users\\Korisnik\\Desktop\Ecole Polytechnique\\CSE201 - Final project\\MathsSolver\\sources\\ImageRecognition\\Images\\test2.jpg";
+    display_prepocessing(path);
 
-    //display_prepocessing(path);
+    //printf("Hello from TensorFlow C library version %s\n", TF_Version());
 
     return a.exec();
 
