@@ -1,0 +1,4 @@
+#ifndef NUM_DERIVATION_HPP
+#define NUM_DERIVATION_HPP
+
+#endif // NUM_DERIVATION_HPP

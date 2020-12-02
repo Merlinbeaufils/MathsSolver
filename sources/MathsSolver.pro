@@ -9,29 +9,31 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Derivatives/Tokenizer.cpp \
-    Derivatives/derivatives.cpp \
-    ImageRecognition/imagePreprocessing.cpp \
-    ImageRecognition/cnn.cpp \
-    ImageRecognition/util.cpp \
+ #  Derivatives/Tokenizer.cpp \
+ #  Derivatives/derivatives.cpp \
+ #   ImageRecognition/imagePreprocessing.cpp \
+ #   ImageRecognition/cnn.cpp \
+ #   ImageRecognition/util.cpp \
+    Numericalsolver/num_derivation.cpp \
     main.cpp \
     MainWindow/mainwindow.cpp
 
 HEADERS += \
-    Derivatives/Tokenizer.hpp \
-    Derivatives/derivatives.hpp \
-    ImageRecognition/imagePreprocessing.hpp \
-    ImageRecognition/cnn.hpp \
-    ImageRecognition/util.hpp \
-    MainWindow/mainwindow.h
+  #  Derivatives/Tokenizer.hpp \
+  #  Derivatives/derivatives.hpp \
+  #  ImageRecognition/imagePreprocessing.hpp \
+   # ImageRecognition/cnn.hpp \
+   # ImageRecognition/util.hpp \
+    MainWindow/mainwindow.h \
+    Numericalsolver/num_derivation.hpp
 
 FORMS += \
     MainWindow/mainwindow.ui
 
 
 
-INCLUDEPATH += $${EIGEN_LIBRARY_INCLUDE}
-LIBS += -L$${EIGEN_LIBRARY_PATH} -lcommon
+#INCLUDEPATH += $${EIGEN_LIBRARY_INCLUDE}
+#LIBS += -L$${EIGEN_LIBRARY_PATH} -lcommon
 
 # ON WINDOWS UNCOMMENT THE TWO LINES BELOW
 
