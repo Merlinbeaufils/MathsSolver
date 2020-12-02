@@ -73,3 +73,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 # Same as for opencv, add:
 # "OPENCV_LIBRARY_INCLUDE=root/eigen-3.3.8"
 
+
+win32:CONFIG(release, debug|release): LIBS += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\includelibtensorflow-cpu-windows-x86_64-2.3.1\lib\ -ltensorflow
+else:win32:CONFIG(debug, debug|release): LIBS += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\includelibtensorflow-cpu-windows-x86_64-2.3.1\lib\ -ltensorflowd
+
+INCLUDEPATH += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\include
+DEPENDPATH += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\include\libtensorflow-cpu-windows-x86_64-2.3.1\lib\libtensorflow.lib
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\include\libtensorflow-cpu-windows-x86_64-2.3.1\lib\libtensorflowd.lib
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\include\libtensorflow-cpu-windows-x86_64-2.3.1\lib\tensorflow.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += C:\Users\Korisnik\Downloads\libtensorflow-cpu-windows-x86_64-2.3.1\include\libtensorflow-cpu-windows-x86_64-2.3.1\lib\tensorflowd.lib
