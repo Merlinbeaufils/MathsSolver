@@ -1,0 +1,2 @@
+This week I fix bugs in linear system and finish polynomial integral.
+Next week I plan to deal with the First order ordinary differential equation.
