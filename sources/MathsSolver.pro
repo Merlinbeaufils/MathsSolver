@@ -9,24 +9,39 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-HEADERS += \
-    Derivatives/Tokenizer.hpp \
-    Derivatives/derivatives.hpp \
-#    Derivatives/tokenizer_testing.hpp \
-#    ImageRecognition/imagePreprocessing.hpp \
-#    ImageRecognition/cnn.hpp \
-#    ImageRecognition/util.hpp \
-#    MainWindow/mainwindow.h
 
 SOURCES += \
-    Derivatives/Tokenizer.cpp \
-    Derivatives/derivatives.cpp \
-#    ImageRecognition/imagePreprocessing.cpp \
-#    ImageRecognition/cnn.cpp \
-#    ImageRecognition/util.cpp \
-#    MainWindow/mainwindow.cpp
-    main.cpp \
+#     ImageRecognition/imagePreprocessing.cpp \
+#     ImageRecognition/cnn.cpp \
+#     ImageRecognition/util.cpp \
+     Derivatives/Tokenizer.cpp \
+     Derivatives/derivatives.cpp \
+     Equations/fft.cpp \
+     Equations/gaussin.cpp \
+     Equations/matrix.cpp \
+     Equations/numbers.cpp \
+     Equations/polynomial.cpp \
+     Equations/step.cpp \
+     NumericalSolver/num_derivation.cpp \
+     NumericalSolver/num_integration.cpp \
+     main.cpp \
+     MainWindow/mainwindow.cpp
 
+HEADERS += \
+     ImageRecognition/imagePreprocessing.hpp \
+#     ImageRecognition/cnn.hpp \
+#     ImageRecognition/util.hpp \
+     Derivatives/Tokenizer.hpp \
+     Derivatives/derivatives.hpp \
+     Equations/fft.hpp \
+     Equations/gaussin.hpp \
+     Equations/matrix.hpp \
+     Equations/numbers.hpp \
+     Equations/polynomial.hpp \
+     Equations/step.hpp \
+     MainWindow/mainwindow.h \
+     NumericalSolver/num_derivation.hpp \
+     NumericalSolver/num_integration.hpp
 
 FORMS += \
     MainWindow/mainwindow.ui
@@ -34,13 +49,13 @@ FORMS += \
 
 # Eigen path
 
-#INCLUDEPATH += $${EIGEN_LIBRARY_INCLUDE}
-#LIBS += -L$${EIGEN_LIBRARY_PATH} -lcommon
+INCLUDEPATH += $${EIGEN_LIBRARY_INCLUDE}
+LIBS += -L$${EIGEN_LIBRARY_PATH} -lcommon
 
 # ON WINDOWS UNCOMMENT THE TWO LINES BELOW
 
-#INCLUDEPATH += $${OPENCV_LIBRARY_INCLUDE}
-#LIBS += -L$${OPENCV_LIBRARY_PATH} -lopencv_core450 -lopencv_highgui450 -lopencv_imgcodecs450 -lopencv_imgproc450 -lopencv_calib3d450
+INCLUDEPATH += $${OPENCV_LIBRARY_INCLUDE}
+LIBS += -L$${OPENCV_LIBRARY_PATH} -lopencv_core450 -lopencv_highgui450 -lopencv_imgcodecs450 -lopencv_imgproc450 -lopencv_calib3d450
 
 
 ## -L path tells the linker to look for library files inside OPENCV_LIBRARY_PATH
@@ -63,18 +78,10 @@ FORMS += \
 
 # Lazar :
 #
-
+#"EIGEN_LIBRARY_INCLUDE=C:\Users\Korisnik\Downloads\eigen-3.3.8\eigen-3.3.8" "OPENCV_LIBRARY_INCLUDE=C:\Users\Korisnik\Downloads\opencv\release\install\include" "OPENCV_LIBRARY_PATH=C:\Users\Korisnik\Downloads\opencv\release\bin"
 # ...
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-
-#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../../../../libtensorflow/lib/release/ -ltensorflow.2.3.1
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../../../../libtensorflow/lib/debug/ -ltensorflow.2.3.1
-#else:unix: LIBS += -L$$PWD/../../../../../../../../libtensorflow/lib/ -ltensorflow.2.3.1
-
-#INCLUDEPATH += $$PWD/../../../../../../../../libtensorflow/include
-#DEPENDPATH += $$PWD/../../../../../../../../libtensorflow/include
